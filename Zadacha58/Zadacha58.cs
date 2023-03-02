@@ -18,6 +18,7 @@ AB[i,j] = сумма произведений элементов i-той стр
 4. Вывод трех матриц в консоль;*/
 int [,] MatrixA= Get2DArrayFromConsole (); //Создание двух матриц по вводимым с консоли параметрам
 int [,] MatrixB= Get2DArrayFromConsole ();
+int step=1; //шаг по индексу строк матрицы A и индексу столбцов матрицы B: которые строки и столбцы будем перемножать (в данной задаче все)
 //int [,] MatrixAB= вот сюда наша функция; //Проверка возможности их перемножения+Собственно их перемножение.
 int [,] Matrix = MatrixA; //Вывод трех матриц в консоль.
 Print2DArray (Matrix);
@@ -31,13 +32,28 @@ System.Console.WriteLine(); // отступ на 1 строку
 
 // Список функций.
 
+int [,] ToMultiplyTwo2DArrays (int [,] MatrixA, int [,] MatrixB, int step)
+{
+      int [,] MultiplicationAB = new int [MatrixA.GetLenght(0),MatrixB.GetLenght(1)]; //Создать пустую матрицу-произведение.
+    /*тут блок проверки возможности умножения
+    {//если нельзя умножить
+    //вывести в консоль текст об этом
+    return MultiplicationAB; //вернется пустая матрица
+    }*/
+    {//если можно умножить
 
+      int iAB=0; //Поставить машину на нулевой элемент AB по строке.
+      int jAB=0; //Поставить машину на нулевой элемент AB по столбцу.
+      for (;i<Matrix.GetLenght(0);i++) //Проверить, все ли строки AB перебраны.
+      {
+       for (;j<Matrix.GetLenght(1); j++) //Проверить, все ли столбцы AB перебраны.
+       {
 
-
-
-
-
-
+       }
+      }
+    return MultiplicationAB;
+    }
+}
 
 int [,] Get2DArrayFromConsole ()
 {
