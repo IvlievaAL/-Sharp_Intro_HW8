@@ -18,7 +18,6 @@ int MinValue = Int32.Parse(System.Console.ReadLine());
 int [,] Matrix= Get2DArray(M,N,MaxValue,MinValue);
 Print2DArray (Matrix);
 System.Console.WriteLine(); // отступ на 1 строку
-int DifferenceOfProgression=1; //с каким шагом по индексу брать элементы для обмена
 Matrix=ToOrderEachRowFromMaxToMin (Matrix);
 Print2DArray (Matrix);
 
@@ -31,37 +30,20 @@ int [,] ToOrderEachRowFromMaxToMin (int [,] Matrix)
     { 
      for (;j<Matrix.GetLength(1)-1;j++) //Проверить, дошли ли мы до последнего элемента строки - который не надо ни с чем сравнивать.
      {
-      //int step = HowManyStepsFromThisElementToLast (Matrix, j, DifferenceOfProgression);
-      //System.Console.WriteLine(step);
       for (int HowManySteps=1; HowManySteps<(Matrix.GetLength(1)-j);HowManySteps++) //Элемент, на котором стоим, сравниваем поочередно с каждым следующим на строке.
        {
-        System.Console.WriteLine(HowManySteps);
         if (Matrix[i,j+HowManySteps]>Matrix[i,j])
          {
           temp = Matrix[i,j+HowManySteps];
           Matrix[i,j+HowManySteps]=Matrix[i,j];
           Matrix[i,j]=temp;
-          System.Console.WriteLine("смена");
          }
        }
-         System.Console.WriteLine("столбцы все пройдены");
       }
-      System.Console.WriteLine("строка вся пройдена");
       j=0; //переставляем машину на нулевой по столбцу элемент
      }
 return Matrix; 
 }
-
-/*int HowManyStepsFromThisElementToCurrentSecondElementOfComparedPair(int [,] Matrix, int j, int DifferenceOfProgression)
-{
-int HowManySteps=0;
-int count=0;
- while (HowManySteps<(Matrix.GetLength(1)-1))
- {
-  HowManySteps = HowManySteps+count;
- }
- return HowManySteps;
-}*/
 
 int [,] Get2DArray (int M, int N, int MaxValue, int MinValue)
 {
