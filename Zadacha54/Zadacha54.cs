@@ -17,6 +17,32 @@ System.Console.WriteLine("Enter minimal number: ");
 int MinValue = Int32.Parse(System.Console.ReadLine());
 int [,] Matrix= Get2DArray(M,N,MaxValue,MinValue);
 Print2DArray (Matrix);
+System.Console.WriteLine(); // отступ на 1 строку
+int step=1; //шаг по индексу столбцов, с которым будут выбраны пары элементов для сравнения: в данной задаче берем каждый следующий элемент.
+Matrix=ToOrderEachRowFromMaxToMin (Matrix, step);
+Print2DArray (Matrix);
+
+int [,] ToOrderEachRowFromMaxToMin (int [,] Matrix, int step)
+{
+    int i=0; //Поставить машину на нулевой элемент по строке.
+    int j=0; //Поставить машину на нулевой элемент по столбцу.
+    int temp=0; //временная переменная для перестановки двух чисел местами.
+    for (;i+step<Matrix.GetLength(0);i++) //Проверить, находимся ли мы на крайней строке.
+    { //а если повторяющиеся значения????
+     for (;j+step<Matrix.GetLength(1); j++) //Проверить, находимся ли мы в крайнем столбце.
+     {
+     if (Matrix[i,j+step]<Matrix[i,j])
+         {
+          temp = Matrix[i,j+step];
+          Matrix[i,j+step]=Matrix[i,j];
+          Matrix[i,j]=temp;
+         }
+         System.Console.WriteLine("второй for прошел");
+      }
+      System.Console.WriteLine("первый for прошел");
+     }
+return Matrix; 
+}
 
 int [,] Get2DArray (int M, int N, int MaxValue, int MinValue)
 {
