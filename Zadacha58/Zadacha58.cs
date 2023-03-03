@@ -34,14 +34,9 @@ System.Console.WriteLine(); // отступ на 1 строку
 
 int [,] ToMultiplyTwo2DArrays (int [,] MatrixA, int [,] MatrixB, int step)
 {
-      int [,] MultiplicationAB = new int [MatrixA.GetLenght(0),MatrixB.GetLenght(1)]; //Создать пустую матрицу-произведение.
-    /*тут блок проверки возможности умножения
-    {//если нельзя умножить
-    //вывести в консоль текст об этом
-    return MultiplicationAB; //вернется пустая матрица
-    }*/
-    {//если можно умножить
-
+      int [,] MultiplicationAB = new int [MatrixA.GetLength(0),MatrixB.GetLength(1)]; //Создать пустую матрицу-произведение.
+    if (MatrixA.GetLength(1)==MatrixB.GetLength(0)) //Проверка возможности умножения.
+    {
       int iAB=0; //Поставить машину на нулевой элемент AB по строке.
       int jAB=0; //Поставить машину на нулевой элемент AB по столбцу.
       for (;i<Matrix.GetLenght(0);i++) //Проверить, все ли строки AB перебраны.
@@ -51,8 +46,12 @@ int [,] ToMultiplyTwo2DArrays (int [,] MatrixA, int [,] MatrixB, int step)
 
        }
       }
-    return MultiplicationAB;
     }
+    else 
+    {
+      System.Console.WriteLine("These arrays can not be multiplied");
+    }
+    return MultiplicationAB;
 }
 
 int [,] Get2DArrayFromConsole ()
