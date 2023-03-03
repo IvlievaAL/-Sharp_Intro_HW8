@@ -60,10 +60,10 @@ int [,] ToMultiplyTwo2DArrays (int [,] MatrixA, int [,] MatrixB, int step)
           System.Console.WriteLine();
           System.Console.WriteLine(iAB);
           System.Console.WriteLine(jAB);
+          i=0;
+          j=0;
        }
       jAB=0; //Поставить машину на нулевой по столбцу элемент AB.
-      i=0;
-      j=0;
       }
     }
     else 
