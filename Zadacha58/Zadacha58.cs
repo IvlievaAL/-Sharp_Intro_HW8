@@ -18,42 +18,52 @@ AB[i,j] = сумма произведений элементов i-той стр
 4. Вывод трех матриц в консоль;*/
 int [,] MatrixA= Get2DArrayFromConsole (); //Создание двух матриц по вводимым с консоли параметрам
 int [,] MatrixB= Get2DArrayFromConsole ();
-int step=1; /*шаг по индексу строк матрицы A и индексу столбцов матрицы B: 
-которые строки и столбцы будем перемножать (в данной задаче все). 
-Введен, чтобы метод работал и для случаев перемножения только некоторых строк и столбцов, а не только всех*/
-int [,] MatrixAB= ToMultiplyTwo2DArrays (MatrixA, MatrixB, step); //Проверка возможности их перемножения+Собственно их перемножение.
-int [,] Matrix = MatrixA; //Вывод трех матриц в консоль.
+int [,] Matrix = MatrixA; //Вывод матриц А и В в консоль.
 Print2DArray (Matrix);
 System.Console.WriteLine(); // отступ на 1 строку
 Matrix = MatrixB;
 Print2DArray (Matrix);
 System.Console.WriteLine(); // отступ на 1 строку
-Matrix = MatrixAB;
+int [,] MultiplicationAB = new int [MatrixA.GetLength(0),MatrixB.GetLength(1)]; //На время проверки кода эта строка тут, а не в методе.
+Matrix = MultiplicationAB; //НА время проверки кода надо выводить в консоль внутреннюю матрицу метода.
+Print2DArray (Matrix);
+int step=1; /*шаг по индексу строк матрицы A и индексу столбцов матрицы B: 
+которые строки и столбцы будем перемножать (в данной задаче все). 
+Введен, чтобы метод работал и для случаев перемножения только некоторых строк и столбцов, а не только всех*/
+int [,] MatrixAB= ToMultiplyTwo2DArrays (MatrixA, MatrixB, step); //Проверка возможности их перемножения+Собственно их перемножение.
+Matrix = MatrixAB; //Вывод матрицы АВ в консоль.
 Print2DArray (Matrix);
 
 // Список функций.
 int [,] ToMultiplyTwo2DArrays (int [,] MatrixA, int [,] MatrixB, int step)
 {
-      int [,] MultiplicationAB = new int [MatrixA.GetLength(0),MatrixB.GetLength(1)]; //Создать пустую матрицу-произведение.
+      //int [,] MultiplicationAB = new int [MatrixA.GetLength(0),MatrixB.GetLength(1)]; //Создать пустую матрицу-произведение.
     if (MatrixA.GetLength(1)==MatrixB.GetLength(0)) //Проверка возможности умножения.
     {
       int iAB=0; //Поставить машину на нулевой элемент AB по строке.
       int jAB=0; //Поставить машину на нулевой элемент AB по столбцу.
+      int i=0; //Поставить машину на нулевую строку матрицы В.
+      int j=0; //Поставить машину на нулевой столбец матрицы А.
       for (;iAB<MultiplicationAB.GetLength(0);iAB=iAB+step) //Проверить, все ли строки AB перебраны.
       {
        for (;jAB<MultiplicationAB.GetLength(1); jAB=jAB+step) //Проверить, все ли столбцы AB перебраны.
        {
-         int i=0; //Поставить машину на нулевую строку матрицы A.
-         int j=0; //Поставить машину на нулевой столбец матрицы В.
-         while (i<MatrixA.GetLength(0) && j<MatrixB.GetLength(1)) /*Само умножение элементов i-той строки матрицы А 
+         while (j<MatrixA.GetLength(1) && i<MatrixB.GetLength(0)) /*Само умножение элементов i-той строки матрицы А 
 на соответствующие им по порядку элементы j-того столбца матрицы В.*/
          {
-          MultiplicationAB[iAB,jAB]=MultiplicationAB[iAB,jAB]+MatrixA[i,jAB]*MatrixB[iAB,j];
+          MultiplicationAB[iAB,jAB]=MultiplicationAB[iAB,jAB]+MatrixA[iAB,j]*MatrixB[i,jAB];
+          System.Console.WriteLine(MultiplicationAB[iAB,jAB]);
           i=i+step;
           j=j+step;
+          System.Console.WriteLine("умножил и сложил");
          }
+          System.Console.WriteLine();
+          System.Console.WriteLine(iAB);
+          System.Console.WriteLine(jAB);
        }
-       jAB=0; //Поставить машину на нулевой по столбцу элемент AB.
+      jAB=0; //Поставить машину на нулевой по столбцу элемент AB.
+      i=0;
+      j=0;
       }
     }
     else 
