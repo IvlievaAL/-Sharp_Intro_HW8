@@ -17,14 +17,13 @@ System.Console.WriteLine();
 Print2DArray (Matrix);
 if (Matrix.GetLength(0)==1 | Matrix.GetLength(1)==1) 
 {
+    System.Console.WriteLine();
     System.Console.WriteLine("This array is not a rectangle");
 }
 else
 {
-System.Console.WriteLine();
 int [] SumsOfEachRowOf2DArray = new int [Matrix.GetLength(0)]; //Задан одномерный массив размером с количество строк нашего двумерного массива.
 SumsOfEachRowOf2DArray = ToCountSumOfEachRowElementsInRectangle2DArray (Matrix, SumsOfEachRowOf2DArray);
-LinearArrayAsString (SumsOfEachRowOf2DArray);
 string RowWithMinimalSum = Convert.ToString(GetIndexOfMinimalElementOfLinearArray (SumsOfEachRowOf2DArray));
 System.Console.WriteLine();
 System.Console.WriteLine(string.Concat("строка " , RowWithMinimalSum));
@@ -42,12 +41,6 @@ int [] ToCountSumOfEachRowElementsInRectangle2DArray (int [,] Matrix, int [] Sum
   iSum++;
  }
 return SumsOfEachRowOf2DArray;
-}
-
-void LinearArrayAsString (int [] SumsOfEachRowOf2DArray)
-{
-    string ArrayAsString = string.Join(" , ", SumsOfEachRowOf2DArray); 
-    System.Console.WriteLine(ArrayAsString);
 }
 
 int GetIndexOfMinimalElementOfLinearArray (int [] SumsOfEachRowOf2DArray)
