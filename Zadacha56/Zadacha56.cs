@@ -48,9 +48,7 @@ int GetIndexOfMinimalElementOfLinearArray (int [] SumsOfEachRowOf2DArray)
   int IndexOfMinimalElement=0;
   int HowManyPairwiseComparisonsHaveBeenDone=0; //Подсчет количества проведенных сравнений двух элементов.
   int HowManyStepsFromZeroToIndexOfCurrentElement =1; //Насколько удален тот элемент, который сейчас сравниваем с тем, на котором стоим, от него.
-  while (HowManyPairwiseComparisonsHaveBeenDone<(SumsOfEachRowOf2DArray.GetLength(0)-1)) //Прекращение перебора элементов, если все из них были сравнены.
-  {
-    for (int i=0; i<(SumsOfEachRowOf2DArray.GetLength(0)-1);) //Прекращение перебора элементов, если последний элемент признан минимальным.
+    for (int i=0; HowManyPairwiseComparisonsHaveBeenDone<(SumsOfEachRowOf2DArray.GetLength(0)-1) && i<(SumsOfEachRowOf2DArray.GetLength(0)-1);) //Прекращение перебора элементов, если или все элементы сравнены, или последний элемент признан минимальным.
     {
       if (SumsOfEachRowOf2DArray[i+HowManyStepsFromZeroToIndexOfCurrentElement]<SumsOfEachRowOf2DArray[i]) 
       {
@@ -73,7 +71,6 @@ int GetIndexOfMinimalElementOfLinearArray (int [] SumsOfEachRowOf2DArray)
     System.Console.WriteLine();
       }
     }
-  }
   return IndexOfMinimalElement;
 }
 
