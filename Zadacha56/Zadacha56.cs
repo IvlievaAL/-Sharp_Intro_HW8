@@ -15,6 +15,24 @@
 int [,] Matrix= GetRectangle2DArrayFromConsole ();
 System.Console.WriteLine(); // отступ на 1 строку
 Print2DArray (Matrix);
+System.Console.WriteLine(); // отступ на 1 строку
+int [] SumsOfEachRowOf2DArray = new int [Matrix.GetLength(0)]; //Задан одномерный массив размером с количество строк нашего двумерного массива.
+//сюда вывод одномерного массива
+System.Console.WriteLine(); // отступ на 1 строку
+System.Console.WriteLine(GetIndexOfMinimalElementOfLinearArray (SumsOfEachRowOf2DArray)); //Пока пусть покажет нужный индекс цифрой.
+
+int GetIndexOfMinimalElementOfLinearArray (int [] SumsOfEachRowOf2DArray)
+{
+  int IndexOfMinimalElement=0;
+  for (int i=0; i<SumsOfEachRowOf2DArray.GetLength(0); i++)
+  {
+   if (SumsOfEachRowOf2DArray[i+1]<SumsOfEachRowOf2DArray[i]) 
+   {
+    IndexOfMinimalElement=i+1;
+   }
+  }
+  return IndexOfMinimalElement;
+}
 
 int [,] GetRectangle2DArrayFromConsole ()
 {
