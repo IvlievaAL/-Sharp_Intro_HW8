@@ -13,7 +13,7 @@
 Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка*/
 
 int [,] Matrix= Get2DArrayFromConsole ();
-System.Console.WriteLine(); // отступ на 1 строку
+System.Console.WriteLine();
 Print2DArray (Matrix);
 if (Matrix.GetLength(0)==1 | Matrix.GetLength(1)==1) 
 {
@@ -21,12 +21,13 @@ if (Matrix.GetLength(0)==1 | Matrix.GetLength(1)==1)
 }
 else
 {
-System.Console.WriteLine(); // отступ на 1 строку
+System.Console.WriteLine();
 int [] SumsOfEachRowOf2DArray = new int [Matrix.GetLength(0)]; //Задан одномерный массив размером с количество строк нашего двумерного массива.
 SumsOfEachRowOf2DArray = ToCountSumOfEachRowElementsInRectangle2DArray (Matrix, SumsOfEachRowOf2DArray);
 LinearArrayAsString (SumsOfEachRowOf2DArray);
-System.Console.WriteLine(); // отступ на 1 строку
-System.Console.WriteLine(GetIndexOfMinimalElementOfLinearArray (SumsOfEachRowOf2DArray)); //Пока пусть покажет нужный индекс цифрой.
+string RowWithMinimalSum = Convert.ToString(GetIndexOfMinimalElementOfLinearArray (SumsOfEachRowOf2DArray));
+System.Console.WriteLine();
+System.Console.WriteLine(string.Concat("строка " , RowWithMinimalSum));
 }
 
 int [] ToCountSumOfEachRowElementsInRectangle2DArray (int [,] Matrix, int [] SumsOfEachRowOf2DArray)
@@ -38,7 +39,7 @@ int [] ToCountSumOfEachRowElementsInRectangle2DArray (int [,] Matrix, int [] Sum
    {
     SumsOfEachRowOf2DArray[iSum]=SumsOfEachRowOf2DArray[iSum]+Matrix[i,j];
    }
-  iSum++; // Поставить машину на следующий элемент одномерного массива.
+  iSum++;
  }
 return SumsOfEachRowOf2DArray;
 }
@@ -60,21 +61,13 @@ int GetIndexOfMinimalElementOfLinearArray (int [] SumsOfEachRowOf2DArray)
       {
     i=i+HowManyStepsFromZeroToIndexOfCurrentElement;
     IndexOfMinimalElement=i;
-    System.Console.WriteLine("переход");
-    System.Console.WriteLine(IndexOfMinimalElement);
     HowManyStepsFromZeroToIndexOfCurrentElement=1;
     HowManyPairwiseComparisonsHaveBeenDone++;
-    System.Console.WriteLine(HowManyPairwiseComparisonsHaveBeenDone);
-    System.Console.WriteLine();
       }
       else
       {
-    System.Console.WriteLine("нет перехода");
-    System.Console.WriteLine(IndexOfMinimalElement);
     HowManyStepsFromZeroToIndexOfCurrentElement++;
     HowManyPairwiseComparisonsHaveBeenDone++;
-    System.Console.WriteLine(HowManyPairwiseComparisonsHaveBeenDone);
-    System.Console.WriteLine();
       }
     }
   return IndexOfMinimalElement;
