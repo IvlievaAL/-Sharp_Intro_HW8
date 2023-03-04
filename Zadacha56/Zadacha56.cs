@@ -46,12 +46,33 @@ void LinearArrayAsString (int [] SumsOfEachRowOf2DArray)
 int GetIndexOfMinimalElementOfLinearArray (int [] SumsOfEachRowOf2DArray)
 {
   int IndexOfMinimalElement=0;
-  for (int i=0; i<SumsOfEachRowOf2DArray.GetLength(0); i++)
+  int HowManyPairwiseComparisonsHaveBeenDone=0; //Подсчет количества проведенных сравнений двух элементов.
+  int HowManyStepsFromZeroToIndexOfCurrentElement =1; //Насколько удален тот элемент, который сейчас сравниваем с тем, на котором стоим, от него.
+  while (HowManyPairwiseComparisonsHaveBeenDone<(SumsOfEachRowOf2DArray.GetLength(0)-1)) //Прекращение перебора элементов, если все из них были сравнены.
   {
-   if (SumsOfEachRowOf2DArray[i+1]<SumsOfEachRowOf2DArray[i]) 
-   {
-    IndexOfMinimalElement=i+1;
-   }
+    for (int i=0; i<(SumsOfEachRowOf2DArray.GetLength(0)-1);) //Прекращение перебора элементов, если последний элемент признан минимальным.
+    {
+      if (SumsOfEachRowOf2DArray[i+HowManyStepsFromZeroToIndexOfCurrentElement]<SumsOfEachRowOf2DArray[i]) 
+      {
+    i=i+HowManyStepsFromZeroToIndexOfCurrentElement;
+    IndexOfMinimalElement=i;
+    System.Console.WriteLine("переход");
+    System.Console.WriteLine(IndexOfMinimalElement);
+    HowManyStepsFromZeroToIndexOfCurrentElement=1;
+    HowManyPairwiseComparisonsHaveBeenDone++;
+    System.Console.WriteLine(HowManyPairwiseComparisonsHaveBeenDone);
+    System.Console.WriteLine();
+      }
+      else
+      {
+    System.Console.WriteLine("нет перехода");
+    System.Console.WriteLine(IndexOfMinimalElement);
+    HowManyStepsFromZeroToIndexOfCurrentElement++;
+    HowManyPairwiseComparisonsHaveBeenDone++;
+    System.Console.WriteLine(HowManyPairwiseComparisonsHaveBeenDone);
+    System.Console.WriteLine();
+      }
+    }
   }
   return IndexOfMinimalElement;
 }
