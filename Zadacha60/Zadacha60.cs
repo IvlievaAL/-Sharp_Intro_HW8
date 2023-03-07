@@ -21,7 +21,7 @@ void Print3DArrayByRows (int [,,] Array3D) /*Этот метод, судя по 
   {
    for (int y=0; y<Array3D.GetLength(1);y++)
    {
-    System.Console.Write($"{Array3D[x,y,z]} ({x},{y},{z})");
+    System.Console.Write($"{Array3D[x,y,z]}({x},{y},{z}) ");
    }
    System.Console.WriteLine();
   }
